@@ -9,6 +9,7 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { CreateButtonComponent } from './create-button/create-button.component';
 import { CreateModalComponent } from './create-modal/create-modal.component';
+import { ClientTableComponent } from './client-table/client-table.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,13 @@ import { CreateModalComponent } from './create-modal/create-modal.component';
     MenuComponent,
     CreateButtonComponent,
     CreateModalComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ClientTableComponent
     
   ],
   providers: [],
