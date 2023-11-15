@@ -1,80 +1,90 @@
-
-<table mat-table [dataSource]="client"  class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID client </th>
-        <td mat-cell *matCellDef="let client"> {{client.id}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
-    </ng-container>
-
-    <!-- prenom Column -->
-    <ng-container matColumnDef="prenom">
-        <th mat-header-cell *matHeaderCellDef> prenom </th>
-        <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
-    </ng-container>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
   
-    <!-- Adress Column -->
-    <ng-container matColumnDef="adressePostale">
-        <th mat-header-cell *matHeaderCellDef> Adresse </th>
-        <td mat-cell *matCellDef="let client"> {{client.adressePostale}} </td>
-    </ng-container>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="client"  class="mat-elevation-z8">
 
-       <!-- email Column -->
-       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> email </th>
-        <td mat-cell *matCellDef="let client"> {{client.email}} </td>
-    </ng-container>
-
-    <!-- PDG Column -->
-    <ng-container matColumnDef="nomPDG">
-        <th mat-header-cell *matHeaderCellDef> PDG </th>
-        <td mat-cell *matCellDef="let client"> {{client.nomPDG}} </td>
-    </ng-container>
-
-        <!-- ville Column -->
-        <ng-container matColumnDef="ville">
-            <th mat-header-cell *matHeaderCellDef> ville </th>
-            <td mat-cell *matCellDef="let client"> {{client.ville}} </td>
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID client </th>
+            <td mat-cell *matCellDef="let client"> {{client.id}} </td>
         </ng-container>
-
-
-
-    <!-- typeClient Column -->
-    <ng-container matColumnDef="typeClient">
-        <th mat-header-cell *matHeaderCellDef> typeClient </th>
-        <td mat-cell *matCellDef="let client"> {{client.typeClient}} </td>
-    </ng-container>
-
-
-    <!-- creationDate Column -->
-    <ng-container matColumnDef="dateCreation">
-        <th mat-header-cell *matHeaderCellDef> Date de création </th>
-        <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
-    </ng-container>
-
-        <!-- Edition Column -->
-        <ng-container matColumnDef="edition">
-            <th mat-header-cell *matHeaderCellDef> Edition </th>
-            <td mat-cell *matCellDef="let client"> {{client.edition}} </td>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
+        </ng-container>
+    
+        <!-- prenom Column -->
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> prenom </th>
+            <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
+        </ng-container>
+      
+        <!-- Adress Column -->
+        <ng-container matColumnDef="adressePostale">
+            <th mat-header-cell *matHeaderCellDef> Adresse </th>
+            <td mat-cell *matCellDef="let client"> {{client.adressePostale}} </td>
+        </ng-container>
+    
+           <!-- email Column -->
+           <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> email </th>
+            <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+        </ng-container>
+    
+        <!-- PDG Column -->
+        <ng-container matColumnDef="nomPDG">
+            <th mat-header-cell *matHeaderCellDef> PDG </th>
+            <td mat-cell *matCellDef="let client"> {{client.nomPDG}} </td>
+        </ng-container>
+    
+            <!-- ville Column -->
+            <ng-container matColumnDef="ville">
+                <th mat-header-cell *matHeaderCellDef> ville </th>
+                <td mat-cell *matCellDef="let client"> {{client.ville}} </td>
+            </ng-container>
+    
+    
+    
+        <!-- typeClient Column -->
+        <ng-container matColumnDef="typeClient">
+            <th mat-header-cell *matHeaderCellDef> typeClient </th>
+            <td mat-cell *matCellDef="let client"> {{client.typeClient}} </td>
         </ng-container>
     
     
-        <!-- Suppresion Column -->
-        <ng-container matColumnDef="suppression">
-            <th mat-header-cell *matHeaderCellDef> Supprimer </th>
-            <td mat-cell *matCellDef="let client"> {{client.suppression}} </td>
+        <!-- creationDate Column -->
+        <ng-container matColumnDef="dateCreation">
+            <th mat-header-cell *matHeaderCellDef> Date de création </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
         </ng-container>
     
-
-    <tr mat-header-row *matHeaderRowDef="col"></tr>
-    <tr mat-row *matRowDef="let row; columns: col"></tr> 
-</table>
+            <!-- Edition Column -->
+            <ng-container matColumnDef="edition">
+                <th mat-header-cell *matHeaderCellDef> Edition </th>
+                <td mat-cell *matCellDef="let client"> {{client.edition}} </td>
+            </ng-container>
+        
+        
+            <!-- Suppresion Column -->
+            <ng-container matColumnDef="suppression">
+                <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+                <td mat-cell *matCellDef="let client"> {{client.suppression}} </td>
+            </ng-container>
+        
+    
+        <tr mat-header-row *matHeaderRowDef="col"></tr>
+        <tr mat-row *matRowDef="let row; columns: col"></tr> 
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+  
+  
