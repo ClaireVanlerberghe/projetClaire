@@ -22,17 +22,19 @@ import { IClient } from '../models/iclient';
 })
 export class ClientTableComponent implements AfterViewInit {
   
-  dataSource: MatTableDataSource<DataService>;
+  dataSource: MatTableDataSource<IClient> = new MatTableDataSource<IClient>([]);
+
 
   public clients: IClient[] = []
   public client: any;
   public col: any
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public dataServ: DataService) {
-    
+    this.dataSource = new MatTableDataSource<IClient>([]);
+    this.getClients();
   }
 
   ngAfterViewInit() {
