@@ -1,1 +1,55 @@
-<button>Création client</button>
+
+<h2 mat-dialog-title>Création nouveau client</h2>
+<mat-dialog-content class="mat-typography" style="width: 50vw; display: flex;
+flex-wrap: wrap; gap: 6px; justify-content: space-evenly;">
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>PDG</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" >
+      <mat-label>Email</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Ville</mat-label>
+      <input matInput required>
+    </mat-form-field>
+  </p>
+  <mat-form-field> 
+    <mat-label>Type client</mat-label>
+    <mat-select required>
+      <mat-option value="Agricole">Agricole</mat-option>
+      <mat-option value="Cabinet comptable">Cabinet comptable</mat-option>
+      <mat-option value="Commerce">Commerce</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial style="background-color: #5b48a3; color: white;">Confirmer la création</button>
+</mat-dialog-actions>

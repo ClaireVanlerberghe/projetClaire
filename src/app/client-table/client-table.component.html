@@ -1,41 +1,43 @@
 <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Nom" #input>
+    <input matInput  (keyup)="applyFilter($event)" placeholder="Nom" #input>
   </mat-form-field>
   
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="client"  matSort>
 
+    
+    <table mat-table [dataSource]="client"  matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+        
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-    
+            
         <!-- ID Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID client </th>
+        <ng-container matColumnDef="id" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="id"> ID client </th>
             <td mat-cell *matCellDef="let client"> {{client.id}} </td>
         </ng-container>
     
         <!-- Name Column -->
         <ng-container matColumnDef="nom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="nom"> Nom </th>
             <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
         </ng-container>
     
         <!-- prenom Column -->
         <ng-container matColumnDef="prenom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> prenom </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="prenom"> Prénom </th>
             <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
         </ng-container>
       
         <!-- Adress Column -->
         <ng-container matColumnDef="adressePostale">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header=""> Adresse </th>
             <td mat-cell *matCellDef="let client"> {{client.adressePostale}} </td>
         </ng-container>
     
            <!-- email Column -->
            <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
             <td mat-cell *matCellDef="let client"> {{client.email}} </td>
         </ng-container>
     
@@ -63,28 +65,38 @@
         <!-- creationDate Column -->
         <ng-container matColumnDef="dateCreation">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de création </th>
-            <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
+            <td mat-cell *matCellDef="let client"> {{client.dateCreation}} </td>
         </ng-container>
     
             <!-- Edition Column -->
             <ng-container matColumnDef="edition">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Edition </th>
-                <td mat-cell *matCellDef="let client"> {{client.edition}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Edition</th>
+                <td mat-cell *matCellDef="let client" style="text-align: center;"><button mat-button (click)="openEdit()"><img src="../../assets/edit.svg" class="icon" alt="icon edition"/></button></td>
             </ng-container>
         
         
             <!-- Suppresion Column -->
-            <ng-container matColumnDef="suppression">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Supprimer </th>
-                <td mat-cell *matCellDef="let client"> {{client.suppression}} </td>
+            <ng-container matColumnDef="suppression" style="text-align: center;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</th>
+                <td mat-cell *matCellDef="let client" style="text-align: center;"><img src="../../assets/trash.svg" class="icon" alt="icon suppression"/></td>
             </ng-container>
         
     
         <tr mat-header-row *matHeaderRowDef="col"></tr>
         <tr mat-row *matRowDef="let row; columns: col"></tr> 
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        
     </table>
+    
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [length]="200" [pageSizeOptions]="[10, 25]" aria-label="Select page">
+    </mat-paginator>
+    
+      
+
   </div>
   
   
