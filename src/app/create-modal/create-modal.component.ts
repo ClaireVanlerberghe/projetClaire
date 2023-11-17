@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {FloatLabelType, MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { DataService } from '../service/data.service';
+import { IClient } from '../models/iclient';
+import { Router } from '@angular/router';
 
+//Pour ouvrir la modal
 
 @Component({
   selector: 'app-create-modal',
@@ -38,10 +43,25 @@ export class CreateModalComponent {
   
  
 }
+
+//Pour enregistrer client
+
 @Component({
   selector: 'app-create-button',
   templateUrl: '../create-button/create-button.component.html',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
 })
-export class CreateButtonComponent {}
+export class CreateButtonComponent {
+
+  public client : IClient = {} as IClient
+
+  constructor(private dataServ: DataService, private router: Router) {}
+
+  onCreate() {
+    this.dataServ.createClient(this.client).subscribe(() =>{
+      this.router.navigate(['/clients']).then()
+    })
+  }
+
+}

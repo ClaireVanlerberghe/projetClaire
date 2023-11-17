@@ -24,9 +24,10 @@ export class DataService {
   }
 
   
-  createClient() {
-     const createClientURL: string = ``
-   }
+   createClient(client: IClient) {
+    const createClientURL: string = `${this.serverURL}/client`
+    return this.httpClient.post<IClient>(createClientURL, client)
+  }
 
   //updateClient
 

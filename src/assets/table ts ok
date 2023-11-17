@@ -23,6 +23,7 @@ export class ClientTableComponent {
   ngOnInit() {
     this.getClients()
   }
+        
 
   getClients() {
     this.dataServ.getAllClient().subscribe((data: IClient[]) => {

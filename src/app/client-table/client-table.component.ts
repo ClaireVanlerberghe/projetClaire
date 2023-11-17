@@ -1,18 +1,24 @@
 import { AfterViewInit, Component, ViewChild, Injectable } from '@angular/core';
+
+//import material
 import { MatPaginator, MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { Sort, MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Subject } from 'rxjs';
-import { DataService } from '../service/data.service';
-import { IClient } from '../models/iclient';
-import { $localize} from '@angular/localize/init';
-import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
-
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+
+//import router
+import { ActivatedRoute } from '@angular/router';
+
+import { Subject } from 'rxjs';
+
+//import service et model
+import { DataService } from '../service/data.service';
+import { IClient } from '../models/iclient';
+import { CreateModalComponent } from '../create-modal/create-modal.component';
 
 
 @Injectable()
@@ -21,9 +27,9 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 
   // For internationalization, the `$localize` function from
   // the `@angular/localize` package can be used.
-  firstPageLabel = $localize`Première page`;
-  itemsPerPageLabel = $localize`Clients par page:`;
-  lastPageLabel = $localize`Dernière page`;
+  firstPageLabel = `Première page`;
+  itemsPerPageLabel = `Clients par page:`;
+  lastPageLabel = `Dernière page`;
 
   
   nextPageLabel = 'Page suivante';
@@ -31,16 +37,14 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 
   getRangeLabel(page: number, pageSize: number, length: number): string {
     if (length === 0) {
-      return $localize`Page 1 sur 1`;
+      return `Page 1 sur 1`;
     }
     const amountPages = Math.ceil(length / pageSize);
-    return $localize`Page ${page + 1} sur ${amountPages}`;
+    return `Page ${page + 1} sur ${amountPages}`;
   }
 }
 
-/**
- * @title Paginator internationalization
- */
+//Tableau avec données
 
 
 @Component({
@@ -79,19 +83,13 @@ export class ClientTableComponent implements AfterViewInit {
 
   constructor(public dataServ: DataService,
     public dialog: MatDialog,
-    iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry: MatIconRegistry) {
     // this.dataSource = new MatTableDataSource<IClient>([]);
     // this.getClients();
     // this.trierData = this.clients.slice()
     
   }
-  openEdit() {
-    const dialogRef = this.dialog.open(EditButtonComponent);
-    
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  
 
 
   ngAfterViewInit() {
@@ -103,6 +101,7 @@ export class ClientTableComponent implements AfterViewInit {
 
   ngOnInit() {
     this.getClients()
+    
     this.sortData(this.sort)
     // this.applyFilter()
 
@@ -179,11 +178,33 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 
 }
 
+
+
+//Bouton du tableau qui ouvre la modale pour modifier client;
+
 @Component({
   selector: 'app-edit-button',
   templateUrl: '../edit-button/edit-button.component.html',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })
-export class EditButtonComponent {}
+
+export class EditButtonComponent {
+
+
+  
+}
+
+
+
+//Bouton du tableau qui ouvre la modale pour supprimer client;
+
+// @Component({
+//   selector: 'app-delete-button',
+//   templateUrl: '../delete-button/delete-button.component.html',
+//   styleUrls: ['../delete-button/delete-button.component.scss']
+// })
+// export class DeleteButtonComponent {
+
+// }
 

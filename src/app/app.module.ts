@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -11,8 +10,11 @@ import { ClientTableComponent } from './client-table/client-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+
 import { CreateModalComponent } from './create-modal/create-modal.component';
 import { EditButtonComponent } from './client-table/client-table.component';
+import { FormsModule, NgModel } from '@angular/forms';
+//ne pas oublier d'importer delete button
 
 
 
@@ -21,11 +23,7 @@ import { EditButtonComponent } from './client-table/client-table.component';
     AppComponent,
     HomePageComponent,
     ClientPageComponent,
-    MenuComponent,
-    
-    
-    
-    
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +35,7 @@ import { EditButtonComponent } from './client-table/client-table.component';
     MatTableModule,
     CreateModalComponent,
     EditButtonComponent,
+    FormsModule,
     
   ],
   providers: [],
