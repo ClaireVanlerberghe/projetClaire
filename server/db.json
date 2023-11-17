@@ -1,5 +1,5 @@
 {
-    "clients": [
+  "clients": [
     {
       "id": 1,
       "nom": "Synergetic Solutions",
@@ -549,6 +549,28 @@
       "ville": "Barcelona",
       "typeClient": "Commerce",
       "dateCreation": "2026-12-25"
+    },
+    {
+      "nom": "Homenails",
+      "prenom": "Claire",
+      "nomPDG": "Vanlerberghe",
+      "email": "vanlerberghe24@gmail.com",
+      "adressePostale": "5 rue d'armagnac",
+      "ville": "Toulouse",
+      "typeClient": "Commerce",
+      "dateCreation":"2023-11-17",
+      "id": 97
+    },
+    {
+      "nom": "hghjg",
+      "prenom": "hgjg",
+      "nomPDG": "hjgjgj",
+      "email": "jggjgj",
+      "adressePostale": "nhfhjgj",
+      "ville": "vfhfh",
+      "typeClient": "Agricole",
+      "dateCreation": "2023-11-17",
+      "id": 98
     }
   ]
 }

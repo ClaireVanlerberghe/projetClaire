@@ -10,6 +10,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { DataService } from '../service/data.service';
 import { IClient } from '../models/iclient';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+
+
 
 //Pour ouvrir la modal
 
@@ -50,7 +53,7 @@ export class CreateModalComponent {
   selector: 'app-create-button',
   templateUrl: '../create-button/create-button.component.html',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
+  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, FormsModule],
 })
 export class CreateButtonComponent {
 
@@ -59,8 +62,11 @@ export class CreateButtonComponent {
   constructor(private dataServ: DataService, private router: Router) {}
 
   onCreate() {
+    this.client.dateCreation = new Date()
     this.dataServ.createClient(this.client).subscribe(() =>{
-      this.router.navigate(['/clients']).then()
+      
+      this.dataServ.getAllClient()
+
     })
   }
 

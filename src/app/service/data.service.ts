@@ -12,26 +12,33 @@ export class DataService {
 
   private serverURL : string = "http://localhost:3004"
 
-
+//Récupération de tout les clients
   getAllClient() {
     const clientURL: string = `${this.serverURL}/clients`;
     return this.httpClient.get<IClient[]>(clientURL)
   }
 
+//Récupération de un client
   getOneClient(clientId: string | number) {
     const oneClientURL: string = `${this.serverURL}/clients/${clientId}`;
     return this.httpClient.get<IClient>(oneClientURL)
   }
 
-  
+//Création d'un client
    createClient(client: IClient) {
-    const createClientURL: string = `${this.serverURL}/client`
+    const createClientURL: string = `${this.serverURL}/clients`
     return this.httpClient.post<IClient>(createClientURL, client)
   }
 
-  //updateClient
+//Mise à jour d'un client
+  updateClient(client: IClient, clientId: string | number) {
+    const updateClientURL: string = `${this.serverURL}/apprenants/${clientId}`
+    return this.httpClient.put<IClient>(updateClientURL, client)
+  }
 
-  //deleteClient
-
-
+//Suppression d'un client
+  deleteClient(clientId: string | number) {
+    const deleteClientURL: string = `${this.serverURL}/clients/${clientId}`
+    return this.httpClient.delete<IClient>(deleteClientURL)
+  }
 }

@@ -7,5 +7,5 @@ export interface IClient {
     adressePostale: string,
     ville: string,
     typeClient: string,
-    dateCreation: string
+    dateCreation: Date
 }
