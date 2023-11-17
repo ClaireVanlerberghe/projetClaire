@@ -558,19 +558,8 @@
       "adressePostale": "5 rue d'armagnac",
       "ville": "Toulouse",
       "typeClient": "Commerce",
-      "dateCreation":"2023-11-17",
-      "id": 97
-    },
-    {
-      "nom": "hghjg",
-      "prenom": "hgjg",
-      "nomPDG": "hjgjgj",
-      "email": "jggjgj",
-      "adressePostale": "nhfhjgj",
-      "ville": "vfhfh",
-      "typeClient": "Agricole",
       "dateCreation": "2023-11-17",
-      "id": 98
+      "id": 97
     }
   ]
 }

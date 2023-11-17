@@ -6,7 +6,7 @@
   <div class="mat-elevation-z8">
 
     
-    <table mat-table [dataSource]="client"  matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource?.filteredData"  matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
         
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -78,7 +78,7 @@
             <!-- Suppresion Column -->
             <ng-container matColumnDef="suppression" style="text-align: center;">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</th>
-                <td mat-cell *matCellDef="let client" style="text-align: center;"><img src="../../assets/trash.svg" class="icon" alt="icon suppression"/></td>
+                <td mat-cell *matCellDef="let client" style="text-align: center;"><button mat-button (click)="openDelete()"><img src="../../assets/trash.svg" class="icon" alt="icon suppression"/></button></td>
             </ng-container>
         
     
@@ -92,7 +92,12 @@
     </table>
     
   
-    <mat-paginator [length]="200" [pageSizeOptions]="[10, 25]" aria-label="Select page">
+    <mat-paginator 
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[10, 25]"
+    (page)="pageEvent = paginationChange($event)" aria-label="Select page">
     </mat-paginator>
     
       

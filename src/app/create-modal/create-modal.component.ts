@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 
 
 
+
 //Pour ouvrir la modal
 
 @Component({
@@ -29,6 +30,7 @@ export class CreateModalComponent {
  
 
   constructor(public dialog: MatDialog
+    
               
     ) {}
 
@@ -59,10 +61,17 @@ export class CreateButtonComponent {
 
   public client : IClient = {} as IClient
 
-  constructor(private dataServ: DataService, private router: Router) {}
+  constructor(private dataServ: DataService, private router: Router, private datePipe: DatePipe) {}
+  
 
+  
   onCreate() {
-    this.client.dateCreation = new Date()
+    this.client.dateCreation = new Date();
+
+   
+    console.log(this.client.dateCreation);
+    
+    
     this.dataServ.createClient(this.client).subscribe(() =>{
       
       this.dataServ.getAllClient()
