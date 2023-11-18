@@ -78,7 +78,7 @@
             <!-- Suppresion Column -->
             <ng-container matColumnDef="suppression" style="text-align: center;">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</th>
-                <td mat-cell *matCellDef="let client" style="text-align: center;"><button mat-button (click)="openDelete()"><img src="../../assets/trash.svg" class="icon" alt="icon suppression"/></button></td>
+                <td mat-cell *matCellDef="let client" style="text-align: center;"><button mat-button (click)="openDelete(client)"><img src="../../assets/trash.svg" class="icon" alt="icon suppression"/></button></td>
             </ng-container>
         
     

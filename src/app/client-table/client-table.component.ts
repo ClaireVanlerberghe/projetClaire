@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, Injectable } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Injectable, Inject } from '@angular/core';
 
 //import material
 import { MatPaginator, MatPaginatorModule, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
@@ -6,18 +6,24 @@ import { Sort, MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 //import router
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 import { Subject } from 'rxjs';
 
 //import service et model
 import { DataService } from '../service/data.service';
 import { IClient } from '../models/iclient';
+import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 
 
 
@@ -31,7 +37,7 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   itemsPerPageLabel = `Clients par page:`;
   lastPageLabel = `Dernière page`;
 
-  
+
   nextPageLabel = 'Page suivante';
   previousPageLabel = 'Page précédente';
 
@@ -52,41 +58,40 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   styleUrls: ['./client-table.component.scss'],
   templateUrl: './client-table.component.html',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatIconModule ],
-  providers: [{ provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl,  }],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatIconModule],
+  providers: [{ provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl, }],
 })
-export class ClientTableComponent{
+export class ClientTableComponent {
 
-  public dataSource:any = new Array(); 
+  // TODO un peu complexe à typer, on ignore pour l'instant
+  public dataSource: any;
   currentPage = 1;
   public clients: IClient[] = []
-  public client: any;
+  
   public pageEvent: PageEvent | null = null;
   datasource: null = null;
-  pageIndex:number = 1;
-  pageSize:number = 0;
-  length:number = 0;
+  pageIndex: number = 1;
+  pageSize: number = 0;
+  length: number = 0;
 
-  
+
 
   public itemsToDisplay = 10;
 
-  public pagination:any;
-
-  public col:string[] = [
-      "id",
-      "nom",
-      "prenom",
-      "nomPDG",
-      "email",
-      "adressePostale",
-      "ville",
-      "typeClient",
-      "dateCreation",
-      "edition",
-      "suppression"
+  public col: string[] = [
+    "id",
+    "nom",
+    "prenom",
+    "nomPDG",
+    "email",
+    "adressePostale",
+    "ville",
+    "typeClient",
+    "dateCreation",
+    "edition",
+    "suppression"
   ]
-  
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -98,72 +103,73 @@ export class ClientTableComponent{
 
   ngOnInit() {
     this.getClients()
+
     
-    this.sortData(this.sort)
 
   }
 
-  openDelete() {
-    const dialogRef = this.dialog.open(DeleteButtonComponent);
+  openDelete(client: IClient) {
+    const dialogRef = this.dialog.open(DeleteButtonComponent, { data: {client} });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.getClients()
     });
-  } 
+  }
 
   getClients() {
     this.dataServ.getAllClient().subscribe((data: IClient[]) => {
-      this.client = data;
+      this.clients = data;
+      this.dataSource = new MatTableDataSource(this.clients);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource = new MatTableDataSource(this.client); 
       this.length = this.dataSource.data?.length
       this.pageIndex = 0;
-      
+    
 
-      this.dataSource.filteredData = this.dataSource.data.slice(0, this.pagination[0]);
+      this.dataSource.filteredData = this.clients.slice(0, this.itemsToDisplay);
     })
 
   }
 
-  
+
 
   public applyFilter(e: any) {
     // console.log(" this.client", this.client)
     let filterValue = (e.target as HTMLInputElement).value;
-    filterValue = filterValue.trim(); 
-    filterValue = filterValue.toLowerCase(); 
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     const filterPredicate = (data: any): boolean => {
       const name = data.nom.toLowerCase();
       return name.includes(filterValue);
     };
-    this.dataSource.filteredData = this.dataSource.data.filter((data :any) => filterPredicate(data));
+    this.dataSource.filteredData = this.dataSource.data.filter((data: any) => filterPredicate(data));
   }
 
-  paginationChange(e:any):any{
+  paginationChange(e: any): any {
     this.currentPage = e.pageIndex;
     this.pageSize = e.pageSize;
-    if(e.previousPageIndex !== e.pageIndex){
+    if (e.previousPageIndex !== e.pageIndex) {
       const startDisplayData = (this.currentPage) * this.pageSize;
       const endDisplayData = startDisplayData + this.pageSize;
       this.dataSource.filteredData = this.dataSource.data.slice(startDisplayData, endDisplayData);
-    }else{
+    } else {
       this.dataSource.filteredData = this.dataSource.data.slice(0, this.pageSize);
     }
 
-  
+
   }
 
 
 
-sortData(sort: Sort) {
-    if(this.client){
-      const data = this.client.slice();
+  sortData(sort: Sort) {
+    if (this.clients) {
+      const data = this.clients.slice();
       if (!sort.active || sort.direction === '') {
         this.dataSource.filteredData = data;
+        
         return;
       }
-      this.dataSource.filteredData = data.sort((a: any, b: any) => {
+      data.sort((a, b) => {
         const isAsc = sort.direction === 'asc';
         switch (sort.active) {
           case 'id':
@@ -188,44 +194,16 @@ sortData(sort: Sort) {
             return 0;
         }
       })
+      
+      this.dataSource.filteredData = data.slice(0, this.itemsToDisplay)
     }
   }
 
 
 }
-function compare(a: number | string, b: number | string, isAsc: boolean) {
+// voir doc Generics
+function compare<T extends number | string | Date>(a: T, b: T, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-
-}
-
-
-
-//Bouton du tableau qui ouvre la modale pour modifier client;
-
-// @Component({
-//   selector: 'app-edit-button',
-//   templateUrl: '../edit-button/edit-button.component.html',
-//   standalone: true,
-//   imports: [MatDialogModule, MatButtonModule],
-// })
-
-// export class EditButtonComponent {
-
-
-  
-// }
-
-
-
-//Bouton du tableau qui ouvre la modale pour supprimer client;
-
- @Component({
-   selector: 'app-delete-button',
-   templateUrl: '../delete-button/delete-button.component.html',
-   standalone: true,
-   imports: [MatDialogModule, MatButtonModule],
- })
- export class DeleteButtonComponent {
 
 }
 
