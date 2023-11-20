@@ -14,19 +14,6 @@ import { DataService } from "../service/data.service"
 import { Router } from "@angular/router"
 import { IClient } from "../models/iclient"
 
-// @Component({
-//   selector: 'app-edit-button',
-//   templateUrl: '../edit-button/edit-button.component.html',
-//   standalone: true,
-//   imports: [MatDialogModule, MatButtonModule],
-// })
-
-// export class EditButtonComponent {
-
-
-
-// }
-
 
 
 //Bouton du tableau qui ouvre la modale pour supprimer client;

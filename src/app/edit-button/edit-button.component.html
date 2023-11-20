@@ -1,10 +1,47 @@
-<!--<h2 mat-dialog-title>Modification client</h2>
-<mat-dialog-content class="mat-typography">
-    <p>coucou</p>
-    
-   
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Annuler</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Modifier</button>
-</mat-dialog-actions> -->
+<!-- <h2 mat-dialog-title>Création nouveau client</h2>
+<mat-dialog-content class="mat-typography" >
+
+<form (ngSubmit)="onEdit()" style="width: 50vw; display: flex;
+flex-wrap: wrap; gap: 6px; justify-content: space-evenly;">
+  <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input type="text" name="nom" matInput required [(ngModel)]="client.nom">
+  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput required [(ngModel)]="client.prenom" name="prenom">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>PDG</mat-label>
+      <input matInput required [(ngModel)]="client.nomPDG" name="nomPDG">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" >
+      <mat-label>Email</mat-label>
+      <input matInput ng-required="true" [(ngModel)]="client.email" name="email" ng-pattern=" ^[a-z]+[a-z0-9._-]+@[a-z]+.[a-z.]{2,5}$"
+      > 
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input matInput required [(ngModel)]="client.adressePostale" name="adressePostale">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Ville</mat-label>
+      <input matInput required [(ngModel)]="client.ville" name="ville">
+    </mat-form-field>
+  <mat-form-field> 
+    <mat-label>Type client</mat-label>
+    <mat-select required [(ngModel)]="client.typeClient" name="typeClient">
+      <mat-option value="Agricole">Agricole</mat-option>
+      <mat-option value="Cabinet comptable">Cabinet comptable</mat-option>
+      <mat-option value="Commerce">Commerce</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" value="Confirmer la création" style="background-color: #5b48a3; color: white;">Confirmer la création</button>
+  </mat-dialog-actions>
+</form>
+
+</mat-dialog-content> -->

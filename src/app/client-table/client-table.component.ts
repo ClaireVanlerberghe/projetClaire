@@ -10,6 +10,8 @@ import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+
+//import forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -24,6 +26,8 @@ import { Subject } from 'rxjs';
 import { DataService } from '../service/data.service';
 import { IClient } from '../models/iclient';
 import { DeleteButtonComponent } from '../delete-button/delete-button.component';
+import { EditButtonComponent } from '../edit-button/edit-button.component';
+
 
 
 
@@ -104,12 +108,21 @@ export class ClientTableComponent {
   ngOnInit() {
     this.getClients()
 
+
     
 
   }
 
   openDelete(client: IClient) {
     const dialogRef = this.dialog.open(DeleteButtonComponent, { data: {client} });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getClients()
+    });
+  }
+
+  openEdit(client: IClient) {
+    const dialogRef = this.dialog.open(EditButtonComponent, { data: {client} });
 
     dialogRef.afterClosed().subscribe(result => {
       this.getClients()
@@ -134,7 +147,7 @@ export class ClientTableComponent {
 
 
   public applyFilter(e: any) {
-    // console.log(" this.client", this.client)
+   
     let filterValue = (e.target as HTMLInputElement).value;
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
@@ -194,7 +207,7 @@ export class ClientTableComponent {
             return 0;
         }
       })
-      
+     
       this.dataSource.filteredData = data.slice(0, this.itemsToDisplay)
     }
   }
@@ -206,4 +219,6 @@ function compare<T extends number | string | Date>(a: T, b: T, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 
 }
+
+
 

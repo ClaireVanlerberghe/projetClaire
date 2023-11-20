@@ -13,11 +13,15 @@ import { MatTableModule } from '@angular/material/table';
 
 
 import { CreateModalComponent } from './create-modal/create-modal.component';
+import { EditButtonComponent } from './edit-button/edit-button.component';
+
 
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
-//ne pas oublier d'importer delete button
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+
 
 
 
@@ -26,7 +30,9 @@ import { DeleteButtonComponent } from './delete-button/delete-button.component';
     AppComponent,
     HomePageComponent,
     ClientPageComponent,
-    MenuComponent
+    MenuComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -38,8 +44,11 @@ import { DeleteButtonComponent } from './delete-button/delete-button.component';
     MatTableModule,
     CreateModalComponent,
     DeleteButtonComponent,
+    EditButtonComponent,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    
     
   ],
   providers: [DatePipe, JsonPipe],
