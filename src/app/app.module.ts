@@ -21,6 +21,8 @@ import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -31,6 +33,8 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
     HomePageComponent,
     ClientPageComponent,
     MenuComponent,
+
+    
     
     
   ],
@@ -48,10 +52,13 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
     FormsModule,
     CommonModule,
     MatFormFieldModule,
+    MatInputModule
+    
     
     
   ],
   providers: [DatePipe, JsonPipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
