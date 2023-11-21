@@ -19,7 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'edit-button.component',
   templateUrl: 'edit-button.component.html',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
+  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, FormsModule],
 })
 export class EditButtonComponent {
 

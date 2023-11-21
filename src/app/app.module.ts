@@ -16,7 +16,7 @@ import { CreateModalComponent } from './create-modal/create-modal.component';
 import { EditButtonComponent } from './edit-button/edit-button.component';
 
 
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -52,7 +52,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     CommonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    
     
     
     
