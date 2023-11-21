@@ -1,37 +1,37 @@
-<h2 mat-dialog-title>Modification client/h2>
+<h2 mat-dialog-title>Modification client</h2>
 <mat-dialog-content class="mat-typography" >
 
 <form (ngSubmit)="onEdit()" style="width: 50vw; display: flex;
 flex-wrap: wrap; gap: 6px; justify-content: space-evenly;">
   <mat-form-field appearance="outline">
-      <mat-label>{{client.nom}}</mat-label>
+      <mat-label>{{data.client.nom}}</mat-label>
       <input type="text" name="nom" matInput required [(ngModel)]="client.nom">
   </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>{{client.prenom}}</mat-label>
+      <mat-label>{{data.client.prenom}}</mat-label>
       <input matInput required [(ngModel)]="client.prenom" name="prenom">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>{{client.nomPDG}}</mat-label>
+      <mat-label>{{data.client.nomPDG}}</mat-label>
       <input matInput required [(ngModel)]="client.nomPDG" name="nomPDG">
     </mat-form-field>
   
     <mat-form-field appearance="outline" >
-      <mat-label>{{client.email}}</mat-label>
+      <mat-label>{{data.client.email}}</mat-label>
       <input matInput ng-required="true" [(ngModel)]="client.email" name="email" ng-pattern=" ^[a-z]+[a-z0-9._-]+@[a-z]+.[a-z.]{2,5}$"
       > 
     </mat-form-field>
   
     <mat-form-field appearance="outline">
-      <mat-label>{{client.adressePostale}}</mat-label>
+      <mat-label>{{data.client.adressePostale}}</mat-label>
       <input matInput required [(ngModel)]="client.adressePostale" name="adressePostale">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>{{client.ville}}</mat-label>
+      <mat-label>{{data.client.ville}}</mat-label>
       <input matInput required [(ngModel)]="client.ville" name="ville">
     </mat-form-field>
   <mat-form-field> 
-    <mat-label>{{client.typeClient}}</mat-label>
+    <mat-label>{{data.client.typeClient}}</mat-label>
     <mat-select required [(ngModel)]="client.typeClient" name="typeClient">
       <mat-option value="Agricole">Agricole</mat-option>
       <mat-option value="Cabinet comptable">Cabinet comptable</mat-option>

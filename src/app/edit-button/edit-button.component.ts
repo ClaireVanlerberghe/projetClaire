@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelect, MatSelectModule} from '@angular/material/select';
@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { IClient } from '../models/iclient';
 import { DataService } from '../service/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -25,14 +25,23 @@ export class EditButtonComponent {
 
   public clientId: string | number | null = null
   public client : IClient = {} as IClient
-  router: any;
+  
 
-  constructor(private dataServ: DataService, private activatedRoute: ActivatedRoute){}
-//Récupération de la donnée dans la modale (dans le placeholders surement), puis esuite detection de changement sur l'input et recupération de valeur en gros si vide on ne change rien
+  constructor(
+    private dataServ: DataService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: { client: IClient },
+    
+    
+    ){}
+//Récupération de la donnée dans la modale (dans le placeholders surement), puis ensuite detection de changement sur l'input et recupération de valeur en gros si vide on ne change rien
 
 ngOnInit() {
   this.activatedRoute.paramMap.subscribe((param)=>{
     this.clientId = param.get('clientId')
+    console.log(this.data);
+    
   });
 
   if(this.clientId) {
@@ -47,6 +56,7 @@ onEdit() {
   if(this.clientId){
     this.dataServ.updateClient(this.client, this.clientId).subscribe(()=> {
       this.router.navigate(['/clients'])
+      
     })
   }
 
