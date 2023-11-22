@@ -53,13 +53,9 @@ ngOnInit() {
 
 
 onEdit() {
-  if(this.clientId){
-    this.dataServ.updateClient(this.client, this.clientId).subscribe(()=> {
-      this.router.navigate(['/clients'])
-      
-    })
-  }
+  
+    this.dataServ.updateClient(this.data.client, this.data.client.id).subscribe(
+    )}
 
-}
 
 }

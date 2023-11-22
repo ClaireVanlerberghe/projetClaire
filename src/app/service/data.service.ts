@@ -31,7 +31,7 @@ export class DataService {
 
   //Mise à jour d'un client
   updateClient(client: IClient, clientId: string | number) {
-    const updateClientURL: string = `${this.serverURL}/apprenants/${clientId}`
+    const updateClientURL: string = `${this.serverURL}/clients/${clientId}`
     return this.httpClient.put<IClient>(updateClientURL, client)
   }
 
