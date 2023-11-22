@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>Création nouveau client</h2>
 <mat-dialog-content class="mat-typography" >
 
-<form (ngSubmit)="onCreate()" style="width: 50vw; display: flex;
-flex-wrap: wrap; gap: 6px; justify-content: space-evenly;">
+<form (ngSubmit)="onCreate()" style="width: 45vw; display: flex;
+flex-wrap: wrap; gap: 6px; justify-content: space-evenly; margin-top: 5px;">
   <mat-form-field appearance="outline">
       <mat-label>Nom</mat-label>
       <input type="text" name="nom" matInput required [(ngModel)]="client.nom">

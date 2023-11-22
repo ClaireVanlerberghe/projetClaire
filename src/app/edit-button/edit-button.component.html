@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>Modification client</h2>
 <mat-dialog-content class="mat-typography" >
 
-<form (ngSubmit)="onEdit()" style="width: 50vw; display: flex;
-flex-wrap: wrap; gap: 6px; justify-content: space-evenly;">
+<form (ngSubmit)="onEdit()" style="width: 45vw; display: flex;
+flex-wrap: wrap; gap: 6px; justify-content: space-evenly; margin-top: 5px;">
   <mat-form-field appearance="outline">
       <mat-label>{{data.client.nom}}</mat-label>
       <input type="text" name="nom" matInput required [(ngModel)]="data.client.nom">
