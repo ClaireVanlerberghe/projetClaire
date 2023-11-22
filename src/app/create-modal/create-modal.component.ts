@@ -1,18 +1,21 @@
+//import Angular
 import { Component } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+//import Material
+import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+//import service et model
 import { DataService } from '../service/data.service';
 import { IClient } from '../models/iclient';
-import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
-
-
 
 
 //Pour ouvrir la modal
@@ -43,9 +46,6 @@ export class CreateModalComponent {
             console.log(`Dialog result: ${result}`);
           });
         }
-  
-
-  
  
 }
 

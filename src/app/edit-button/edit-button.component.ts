@@ -1,19 +1,22 @@
+//import Angular
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {FormsModule} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+//import Material 
+import {MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatSelect, MatSelectModule} from '@angular/material/select';
+import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+
+//import service et model
 import { IClient } from '../models/iclient';
 import { DataService } from '../service/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
-
-
-
+//La modale pour editer client;
 
 @Component({
   selector: 'edit-button.component',
@@ -35,7 +38,6 @@ export class EditButtonComponent {
     
     
     ){}
-//Récupération de la donnée dans la modale (dans le placeholders surement), puis ensuite detection de changement sur l'input et recupération de valeur en gros si vide on ne change rien
 
 ngOnInit() {
   this.activatedRoute.paramMap.subscribe((param)=>{

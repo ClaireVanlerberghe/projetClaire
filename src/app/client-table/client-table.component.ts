@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, Injectable, Inject } from '@angular/core';
+import { Component, ViewChild, Injectable } from '@angular/core';
 
 //import material
 import { MatPaginator, MatPaginatorModule, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
@@ -7,24 +7,15 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-
-//import forms
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-//import router
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
 
 import { Subject } from 'rxjs';
 
 //import service et model
 import { DataService } from '../service/data.service';
 import { IClient } from '../models/iclient';
+
+//import components
 import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 import { EditButtonComponent } from '../edit-button/edit-button.component';
 
@@ -35,8 +26,6 @@ import { EditButtonComponent } from '../edit-button/edit-button.component';
 export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   changes = new Subject<void>();
 
-  // For internationalization, the `$localize` function from
-  // the `@angular/localize` package can be used.
   firstPageLabel = `Première page`;
   itemsPerPageLabel = `Clients par page:`;
   lastPageLabel = `Dernière page`;
@@ -56,7 +45,6 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 
 //Tableau avec données
 
-
 @Component({
   selector: 'app-client-table',
   styleUrls: ['./client-table.component.scss'],
@@ -67,18 +55,14 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 })
 export class ClientTableComponent {
 
-  // TODO un peu complexe à typer, on ignore pour l'instant
   public dataSource: any;
   currentPage = 1;
   public clients: IClient[] = []
-  
   public pageEvent: PageEvent | null = null;
   datasource: null = null;
   pageIndex: number = 1;
   pageSize: number = 0;
   length: number = 0;
-
-
 
   public itemsToDisplay = 10;
 
@@ -100,16 +84,12 @@ export class ClientTableComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public dataServ: DataService,
-    public dialog: MatDialog,
-    iconRegistry: MatIconRegistry) {
+    public dialog: MatDialog) {
   }
 
 
   ngOnInit() {
     this.getClients()
-
-
-    
 
   }
 

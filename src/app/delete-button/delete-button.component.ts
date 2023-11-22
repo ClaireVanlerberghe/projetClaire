@@ -1,17 +1,18 @@
-
-
-//Bouton du tableau qui ouvre la modale pour modifier client;
-
-import { Component, Inject, OnInit } from "@angular/core"
+//import Angular
+import { Component, Inject } from "@angular/core"
 import { FormsModule } from "@angular/forms"
+import { Router } from "@angular/router"
+
+//import Material
 import { MatButtonModule } from "@angular/material/button"
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog"
 import { MatFormFieldModule } from "@angular/material/form-field"
 import { MatIconModule } from "@angular/material/icon"
 import { MatInputModule } from "@angular/material/input"
 import { MatSelectModule } from "@angular/material/select"
+
+//import service et model
 import { DataService } from "../service/data.service"
-import { Router } from "@angular/router"
 import { IClient } from "../models/iclient"
 
 
